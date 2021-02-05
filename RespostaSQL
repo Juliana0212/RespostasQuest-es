@@ -1,0 +1,44 @@
+2.1
+SELECT p.nome, e.evento AS rlc
+FROM tabela_pessoa AS p
+INNER JOIN tabela_evento AS e
+ON p.id = e.pessoa_id
+ORDER BY e.nome ASC, p.nome ASC;
+
+2.2
+SELECT nome FROM tabela_pessoa WHERE sobrenome like “Doe” 
+
+2.3
+INSERT INTO tabela_evento (id, evento, pessoa_id)
+VALUES ('5', "Evento E", '5');
+
+2.4
+UPDATE tabela_evento
+SET pessoa_id = 1
+WHERE id = 4;
+
+2.5
+DELETE FROM tabela_eventos WHERE evento = "Evento B";
+
+2.6
+DELETE FROM tabela_pessoa WHERE id NOT IN (SELECT pessoa_id FROM tabela_eventos);
+
+2.7
+ALTER TABLE tabela_pessoa ADD idade INT;
+
+2.8
+CREATE TABLE tabela_telefone
+(
+ Id int NOT NULL,
+ Telefone VARCHAR (200),
+ pessoa_id int,
+ PRIMARY KEY (id),
+ FOREIGN KEY (pessoa_id) REFERENCES tabela_evento (pessoa_id)
+);
+
+2.9
+CREATE UNIQUE INDEX unq_telefone ON tabela_telefone (telefone);
+
+
+2.10
+DROP TABLE tabela_telefone;
